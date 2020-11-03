@@ -1,5 +1,5 @@
 'use strict'
-const ethUtil = require('ethereumjs-util')
+const ethUtil = require('@fksyuan/ethereumjs-util')
 const fees = require('ethereum-common/params.json')
 const BN = ethUtil.BN
 
@@ -104,6 +104,8 @@ class Transaction {
      * @name serialize
      */
     // attached serialize
+    data.to = ethUtil.decodeBech32Address(data.to)
+    data.from = ethUtil.decodeBech32Address(data.from)
     ethUtil.defineProperties(this, fields, data)
 
     /**
